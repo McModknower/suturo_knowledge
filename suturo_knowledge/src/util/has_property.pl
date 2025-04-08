@@ -52,9 +52,11 @@ transitivee(Object) :-
 % is an object heavy or light
 is_light_or_heavy(ObjName, Weight):-
 	what_object(ObjName, Object),
-	triple(Object, transitive(rdfs:'subClassOf'), X),
-	triple(X, _, suturo:hasWeight),
-	triple(X, owl:hasValue, Weight).
+	kb_call((
+		triple(Object, transitive(rdfs:'subClassOf'), X),
+		triple(X, _, suturo:hasWeight),
+		triple(X, owl:hasValue, Weight)
+	)).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
