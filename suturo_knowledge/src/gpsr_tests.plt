@@ -11,23 +11,12 @@
 test(light_or_heavy) :-
     is_light_or_heavy('metal bowl', heavy).
 
-%% test(variable, [fail]) :-
-%%     shape_workaround:is_valid_shape(_Variable).
-
-%% test(box_true) :-
-%%     shape_workaround:is_valid_shape(box(1,2,3)).
-
-%% test(box_2, [fail]) :-
-%%     shape_workaround:is_valid_shape(box(1,2)).
-
-%% test(mesh_true) :-
-%%     shape_workaround:is_valid_shape(mesh('path', [1,1,1])).
-
-%% test(sphere_true) :-
-%%     shape_workaround:is_valid_shape(sphere(1)).
-
-%% test(cylinder_true) :-
-%%     shape_workaround:is_valid_shape(cylinder(1,2)).
+test(object_position) :-
+    Frame = map,
+    FPosition = [-6.14,-1.12,4.31],
+    create_object(Obj, test:obj, [Frame, FPosition, [0,0,0,1]]),
+    object_pose(Obj, [Frame, QPosition, _Rotation]),
+    assert_equals(FPosition, QPosition).
 
 %% test('create_and_ask', [setup(test_setup), cleanup(test_cleanup)]) :-
 %%     Shape = box(2.0,3.0,4.0),

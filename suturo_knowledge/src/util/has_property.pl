@@ -51,11 +51,11 @@ transitivee(Object) :-
 %
 % is an object heavy or light
 is_light_or_heavy(ObjName, Weight):-
+    kb_call((
 	what_object(ObjName, Object),
-	kb_call((
-		triple(Object, transitive(rdfs:'subClassOf'), X),
-		triple(X, _, suturo:hasWeight),
-		triple(X, owl:hasValue, Weight)
+	triple(Object, transitive(rdfs:'subClassOf'), X),
+	triple(X, _, suturo:hasWeight),
+	triple(X, owl:hasValue, Weight)
 	)).
 
 
@@ -82,7 +82,7 @@ preorlo_check(ObjName, Object):-
 %
 % get the Object that has the predefined name "ObjName"
 %what_object(+,-)
-what_object(ObjName, Object) :-
+what_object(ObjName, Object) ?>
 	triple(O,_, suturo:hasPredefinedName),
 	triple(O, owl:hasValue, ObjName), 
 	triple(Object,_,O).
